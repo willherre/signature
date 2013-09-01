@@ -1,0 +1,114 @@
+*{
+   
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    font-family: Georgia, sans-serif;
+}
+body,html
+{
+    background: #FCFCFC url(../img/bg.png);
+    padding: 1em;
+    font-family: 'Happy Monkey', cursive;
+
+}
+canvas{
+    cursor: crosshair;
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 1em;
+    -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.35);
+    -moz-box-shadow:    0px 0px 8px rgba(50, 50, 50, 0.35);
+    box-shadow:         0px 0px 8px rgba(50, 50, 50, 0.35);
+
+   
+ }
+h1
+{
+    color: #2F9B9D;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+    font-family: 'Happy Monkey', cursive;
+    margin: 10px;
+}
+fieldset
+{
+    border-radius: 0.8em;
+    padding: 0.8em;
+}
+legend
+{
+    color: #62D76A;
+    font-family: 'Happy Monkey', cursive;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.3);
+}
+#canva,#herra
+{
+    display: inline-block;
+    vertical-align: top;
+    
+
+}
+#herra
+{
+    text-align: center;
+    width: 35%;
+}
+.demora
+{
+   -webkit-transition: opacity 0.5s ease-in;
+    -moz-transition: opacity 0.5s ease-in;
+    -o-transition: opacity 0.5s ease-in;
+    -ms-transition: opacity 0.5s ease-in;
+    transition: opacity 0.5s ease-in;
+}
+.demora:hover
+{
+    -webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+    -ms-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+}
+.imagen
+{
+    background: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 8px rgba(50, 50, 50, 0.35);
+    -moz-box-shadow:    0px 0px 8px rgba(50, 50, 50, 0.35);
+    box-shadow:         0px 0px 8px rgba(50, 50, 50, 0.35);
+    margin: 0.5em;
+    opacity: 0.7;
+    padding: 1px;
+    width: 10%;
+
+
+}
+.imagen:hover
+{
+    opacity: 1;
+}
+@media (max-width: 500px) {
+    h1
+    {
+        font-size: 1.3em;
+    }
+    canvas
+    {
+        display: block;
+        width: 260px;
+        height: 150px;
+    }
+    input[type="text"]
+    {
+        width: 100px;
+    }
+    #herra
+    {
+        display: block;
+        width: 100%;
+    }
+    .imagen
+    {
+        width: 15%;
+    }
+}

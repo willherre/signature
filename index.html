@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Camisetas</title>
+    
+</head>
+    <header>
+        <nav>
+            <fieldset><legend>Pulsa sobre el tipo de imagen y el resultado se generará abajo</legend><button id="png">Guardar Imagen en PNG</button> | <button id="jpeg">Guardar Imagen en JPEG</button><br/>
+            </fieldset>
+        </nav>
+    </header>
+    <body>
+        <div>
+            <canvas id='lienzo' width='640' height='480'></canvas>
+        </div>
+        <input  id="jpeg"name="guardar" type="button" value="Guardar" >
+        <br><img style="width:640px; height:480px" id="imagen" src="image.png" />
+         
+
+
+<img src="" id="laimagen"/>
+        
+    </body>
+    
+    <script src='js/jquery.js'></script>
+    <script src='js/hammer.js'></script>
+    <script>
+
+        var element;
+        var canvas;
+        var ctx;
+        var color = '#000000';
+        var draw = true;
+        var arrastrados = new Array();
+        var penWidth = 5;
+        canvas = document.getElementById('lienzo');
+        ctx = canvas.getContext("2d");
+        ctx.strokeStyle = color;
+        ctx.lineJoin = 'round';
+        ctx.lineWidth = penWidth;
+        var prevX = null;
+        var prevY = null;
+        var suelto = true;
+
+        var hammer = new Hammer(canvas, {
+            drag_min_distance: 1,
+            drag_horizontal: true,
+            drag_vertical: true,
+            transform: false,
+            hold: false,
+            prevent_default: true
+        });
+        
+        hammer.ondrag = function(e){
+            if(draw){
+                var x = e.position.x - canvas.offsetLeft;
+                var y = e.position.y - canvas.offsetTop;
+                brush(x, y, true);
+            }
+        };
+
+        hammer.ondragend = function(e){
+            suelto = true;
+        };
+
+        brush = function(x, y, dragging){
+
+            if(prevX == null || suelto == true){
+                prevX = x;
+                prevY = y;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.closePath();
+                ctx.stroke();
+                suelto = false;
+            }else{
+                ctx.beginPath();
+                ctx.moveTo(prevX, prevY);
+                ctx.lineTo(x, y);
+                ctx.closePath();
+                ctx.stroke();
+                prevX = x;
+                prevY = y;
+                suelto = false;
+            }
+        }
+
+          
+var img = document.getElementById("laimagen");
+
+var png = document.getElementById("png");
+png.addEventListener("click",function(){        
+        var dato = canvas.toDataURL("image/png");
+        dato = dato.replace("image/png", "image/octet-stream");
+        //document.location.href = dato;
+        var sdcard = navigator.getDeviceStorage("sdcard");
+        
+
+        var request = sdcard.addNamed(dato, "firma.png");
+
+        request.onsuccess = function () {
+          var name = this.result.name;
+          console.log('El archivo "' + name + '" se escribió correctamente en el área de almacenamiento sdcard');
+        }
+
+        // Un error suele producirse si un archivo con el mismo nombre ya existe
+        request.onerror = function () {
+          console.warn('No se puede escribir el archivo: ' + this.error);
+        }          
+},false);
+
+
+
+    </script>
+
+    <script type="text/javascript">
+         $(document).ready(function(){
+            $("#background-color").change(function(){
+                cntx.strokeStyle=document.getElementById('chosen-color').value;
+            });      
+            $("#borrador").click(function(){
+                ctx.strokeStyle="#fff"
+            });
+         }
+    </script>
+</html>
